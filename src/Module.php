@@ -5,8 +5,6 @@
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
-declare(strict_types=1);
-
 namespace setasign\SetaPDF\Signer\Module\GoogleCloudKMS;
 
 use Google\ApiCore\ApiException;
@@ -50,13 +48,16 @@ class Module implements
      */
     protected $signatureAlgorithm;
 
-    public function __construct(
-        string $projectId,
-        string $locationId,
-        string $keyRingId,
-        string $keyId,
-        string $versionId
-    ) {
+    /**
+     * Module constructor.
+     *
+     * @param string $projectId
+     * @param string $locationId
+     * @param string $keyRingId
+     * @param string $keyId
+     * @param string $versionId
+     */
+    public function __construct($projectId, $locationId, $keyRingId, $keyId, $versionId) {
         // Create the Cloud KMS client.
         $this->kmsClient = new KeyManagementServiceClient();
         $this->padesModule = new SetaPDF_Signer_Signature_Module_Pades();
@@ -90,7 +91,7 @@ class Module implements
      * @param string $digest Allowed values are sha256, sha386, sha512
      * @see SetaPDF_Signer_Signature_Module_Pades::setDigest()
      */
-    public function setDigest(string $digest)
+    public function setDigest($digest)
     {
         $this->padesModule->setDigest($digest);
     }
@@ -100,7 +101,7 @@ class Module implements
      *
      * @return string
      */
-    public function getDigest(): string
+    public function getDigest()
     {
         return $this->padesModule->getDigest();
     }
@@ -113,9 +114,9 @@ class Module implements
      * @param int $signatureAlgorithm
      * @see CryptoKeyVersionAlgorithm
      */
-    public function setSignatureAlgorithm(int $signatureAlgorithm)
+    public function setSignatureAlgorithm($signatureAlgorithm)
     {
-        $this->signatureAlgorithm = $signatureAlgorithm;
+        $this->signatureAlgorithm = (int) $signatureAlgorithm;
     }
 
     /**
@@ -131,7 +132,7 @@ class Module implements
      * @return int
      * @throws ApiException
      */
-    public function fetchSignatureAlgorithm(): int
+    public function fetchSignatureAlgorithm()
     {
         $keyVersion = $this->kmsClient->getCryptoKeyVersion($this->keyVersionName);
         return $keyVersion->getAlgorithm();

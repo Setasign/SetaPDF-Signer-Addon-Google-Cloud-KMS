@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use setasign\SetaPDF\Signer\Module\GoogleCloudKMS\Module;
 
 require_once __DIR__ . '/../vendor/autoload.php';
