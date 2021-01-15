@@ -1,0 +1,32 @@
+{
+    "name": "setasign/setapdf-signer-addon-google-cloud-kms",
+    "description": "",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "homepage": "https://github.com/Setasign/SetaPDF-Signer-Addon-Google-Cloud-KMS",
+    "authors": [
+        {
+            "name": "Setasign",
+            "email": "support@setasign.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "setasign/setapdf-signer": "^2.0",
+        "google/cloud-kms": "^1.11"
+    },
+    "require-dev": {
+        "phpseclib/phpseclib": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "setasign\\SetaPDF\\Signer\\Module\\GoogleCloudKMS\\": "src"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://www.setasign.com/downloads/"
+        }
+    ]
+}
