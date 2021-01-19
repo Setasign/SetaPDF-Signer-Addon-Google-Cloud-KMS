@@ -7,7 +7,7 @@ the [Google Cloud Key Management Service](https://cloud.google.com/kms/docs) to 
 
 To use this package you need credentials for the Google Cloud KMS.
 
-This package is developed and tested on PHP >= 7.0. Requirements of the [SetaPDF-Signer](https://www.setasign.com/signer)
+This package is developed and tested on PHP >= 5.6. Requirements of the [SetaPDF-Signer](https://www.setasign.com/signer)
 component can be found [here](https://manuals.setasign.com/setapdf-signer-manual/getting-started/#index-1).
 
 ## Installation
