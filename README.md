@@ -1,6 +1,6 @@
 #  SetaPDF-Signer component module for the Google Cloud KMS.
 
-This package offers module for the [SetaPDF-Signer](https://www.setasign.com/signer) component that allow you to use
+This package offers a module for the [SetaPDF-Signer](https://www.setasign.com/signer) component that allow you to use
 the [Google Cloud Key Management Service](https://cloud.google.com/kms/docs) to **digital sign PDF documents in pure PHP**.
 
 ## Requirements
