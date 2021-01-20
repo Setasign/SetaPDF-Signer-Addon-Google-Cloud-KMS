@@ -66,6 +66,7 @@ component. Its constructor requires 5 arguments:
 - `$keyRingId` -  Your key Ring id
 - `$keyId` -  Your key id
 - `$versionId` -  Your version id
+- `$kmsClient` - optional; can be used for e.g. authentification through code
 
 A simple complete signature process would look like this:
 

@@ -56,11 +56,21 @@ class Module implements
      * @param string $keyRingId
      * @param string $keyId
      * @param string $versionId
+     * @param KeyManagementServiceClient $kmsClient
      */
-    public function __construct($projectId, $locationId, $keyRingId, $keyId, $versionId)
-    {
-        // Create the Cloud KMS client.
-        $this->kmsClient = new KeyManagementServiceClient();
+    public function __construct(
+        $projectId,
+        $locationId,
+        $keyRingId,
+        $keyId,
+        $versionId,
+        KeyManagementServiceClient $kmsClient = null
+    ) {
+        if ($kmsClient === null) {
+            // Create the Cloud KMS client.
+            $kmsClient = new KeyManagementServiceClient();
+        }
+        $this->kmsClient = $kmsClient;
         $this->padesModule = new SetaPDF_Signer_Signature_Module_Pades();
 
         $this->keyVersionName = $this->kmsClient->cryptoKeyVersionName(
