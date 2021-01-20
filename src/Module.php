@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (c) 2021 Setasign - Jan Slabon (https://www.setasign.com)
+ * @copyright Copyright (c) 2021 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -193,14 +193,10 @@ class Module implements
         if (\in_array($signatureAlgorithm, $algorithmsWithPssPadding, true)) {
             // the algorihms are linked to https://tools.ietf.org/html/rfc7518#section-3.5 which says:
             // "The size of the salt value is the same size as the hash function output."
-            $saltLength = 256 / 8;
-            if ($signatureAlgorithm === CryptoKeyVersionAlgorithm::RSA_SIGN_PSS_3072_SHA256) {
-                $saltLength = 384 / 8;
-            } elseif (
-                $signatureAlgorithm === CryptoKeyVersionAlgorithm::RSA_SIGN_PSS_4096_SHA256
-                || $signatureAlgorithm === CryptoKeyVersionAlgorithm::RSA_SIGN_PSS_4096_SHA512
-            ) {
+            if ($signatureAlgorithm === CryptoKeyVersionAlgorithm::RSA_SIGN_PSS_4096_SHA512) {
                 $saltLength = 512 / 8;
+            } else {
+                $saltLength = 256 / 8;
             }
 
             $cms = $this->padesModule->getCms();
