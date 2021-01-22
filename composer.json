@@ -1,6 +1,6 @@
 {
     "name": "setasign/setapdf-signer-addon-google-cloud-kms",
-    "description": "",
+    "description": "A SetaPDF-Signer component signature module for the Google Cloud Key Management Service.",
     "minimum-stability": "stable",
     "license": "MIT",
     "homepage": "https://github.com/Setasign/SetaPDF-Signer-Addon-Google-Cloud-KMS",
