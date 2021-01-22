@@ -73,7 +73,7 @@ class Module implements
         $this->kmsClient = $kmsClient;
         $this->padesModule = new SetaPDF_Signer_Signature_Module_Pades();
 
-        $this->keyVersionName = $this->kmsClient->cryptoKeyVersionName(
+        $this->keyVersionName = KeyManagementServiceClient::cryptoKeyVersionName(
             $projectId,
             $locationId,
             $keyRingId,
@@ -181,12 +181,6 @@ class Module implements
      */
     public function createSignature(SetaPDF_Core_Reader_FilePath $tmpPath)
     {
-        // ensure certificate
-        $certificate = $this->padesModule->getCertificate();
-        if ($certificate === null) {
-            throw new \BadMethodCallException('Missing certificate!');
-        }
-
         $padesDigest = $this->padesModule->getDigest();
         $signatureAlgorithm = $this->signatureAlgorithm;
         if ($signatureAlgorithm === null) {
