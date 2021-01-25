@@ -73,7 +73,7 @@ class Module implements
         $this->kmsClient = $kmsClient;
         $this->padesModule = new SetaPDF_Signer_Signature_Module_Pades();
 
-        $this->keyVersionName = $this->kmsClient->cryptoKeyVersionName(
+        $this->keyVersionName = KeyManagementServiceClient::cryptoKeyVersionName(
             $projectId,
             $locationId,
             $keyRingId,
@@ -181,13 +181,7 @@ class Module implements
      */
     public function createSignature(SetaPDF_Core_Reader_FilePath $tmpPath)
     {
-        // ensure certificate
-        $certificate = $this->padesModule->getCertificate();
-        if ($certificate === null) {
-            throw new \BadMethodCallException('Missing certificate!');
-        }
-
-        $padesDigest = $this->padesModule->getDigest();
+        $digest = $this->padesModule->getDigest();
         $signatureAlgorithm = $this->signatureAlgorithm;
         if ($signatureAlgorithm === null) {
             $signatureAlgorithm = $this->fetchSignatureAlgorithm();
@@ -230,7 +224,7 @@ class Module implements
                                 [
                                     new Asn1Element(
                                         Asn1Element::OBJECT_IDENTIFIER,
-                                        Asn1Oid::encode(Digest::getOid($padesDigest))
+                                        Asn1Oid::encode(Digest::getOid($digest))
                                     ),
                                     new Asn1Element(Asn1Element::NULL)
                                 ]
@@ -255,7 +249,7 @@ class Module implements
                                         [
                                             new Asn1Element(
                                                 Asn1Element::OBJECT_IDENTIFIER,
-                                                Asn1Oid::encode(Digest::getOid($padesDigest))
+                                                Asn1Oid::encode(Digest::getOid($digest))
                                             ),
                                             new Asn1Element(Asn1Element::NULL)
                                         ]
@@ -278,9 +272,9 @@ class Module implements
         // get the hash data from the module
         $hashData = $this->padesModule->getDataToSign($tmpPath);
 
-        $hash = hash($padesDigest, $hashData, true);
+        $hash = hash($digest, $hashData, true);
         $digestValue = new KmsDigest();
-        switch ($padesDigest) {
+        switch ($digest) {
             case Digest::SHA_256:
                 $digestValue->setSha256($hash);
                 break;

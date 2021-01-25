@@ -5,9 +5,15 @@ the [Google Cloud Key Management Service](https://cloud.google.com/kms/docs) to 
 
 ## Requirements
 
-To use this package you need credentials for the Google Cloud KMS.
+This package uses the official
+[Google Cloud KMS Client Libraries](https://cloud.google.com/kms/docs/reference/libraries)
+to communicate with the KMS service. You need appropriate credentials.
 
-This package is developed and tested on PHP >= 5.6. Requirements of the [SetaPDF-Signer](https://www.setasign.com/signer)
+You also need a X.509 certificates related to your stored keys. To create a self-signed certificate for testing purpose
+or to create a CSR for the certificate authority of your choice, you can use a tool we prepared
+[here](https://github.com/Setasign/Cloud-KMS-CSR).
+
+The package is developed and tested on PHP >= 5.6. Requirements of the [SetaPDF-Signer](https://www.setasign.com/signer)
 component can be found [here](https://manuals.setasign.com/setapdf-signer-manual/getting-started/#index-1).
 
 ## Installation
@@ -31,12 +37,19 @@ and execute `composer update`. You need to define the `repository` to evaluate t
 [SetaPDF-Signer](https://www.setasign.com/signer) component
 (see [here](https://getcomposer.org/doc/faqs/why-can%27t-composer-load-repositories-recursively.md) for more details).
 
+The Setasign repository requires authentication data: You can use your credentials
+of your account at [setasign.com](https://www.setasign.com) to which your licenses
+are assigned. You will be asked for this during a composer run. See
+[here](https://getcomposer.org/doc/articles/authentication-for-private-packages.md#http-basic)
+for more options for authentication with composer.
+
 **Follow the [instructions to authentification](https://cloud.google.com/kms/docs/reference/libraries#setting_up_authentication) on Google Cloud KMS.**
 
 
 ### Evaluation version
 By default this packages depends on a licensed version of the [SetaPDF-Signer](https://www.setasign.com/signer)
-component. If you want to use it with an evaluation version please use following in your composer.json:
+component. If you want to use it with an [evaluation version](https://www.setasign.com/products/setapdf-signer/evaluate/)
+please use following in your composer.json:
 
 ```json
 {
@@ -95,6 +108,8 @@ $document = SetaPDF_Core_Document::loadByFilename($fileToSign, $writer);
 $signer = new SetaPDF_Signer($document);
 $signer->sign($googleCloudKmsModule);
 ```
+
+Make sure that you pass the same `$digest` value as configured for the key in the KMS. 
 
 ## License
 
