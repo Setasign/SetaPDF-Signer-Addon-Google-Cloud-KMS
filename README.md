@@ -7,7 +7,7 @@ the [Google Cloud Key Management Service](https://cloud.google.com/kms/docs) to 
 
 This package uses the official
 [Google Cloud KMS Client Libraries](https://cloud.google.com/kms/docs/reference/libraries)
-to communicate with the KMS service. You need appropriate credentials.
+to communicate with the KMS. You need appropriate credentials.
 
 You also need a X.509 certificates related to your stored keys. To create a self-signed certificate for testing purpose
 or to create a CSR for the certificate authority of your choice, you can use a tool we prepared
