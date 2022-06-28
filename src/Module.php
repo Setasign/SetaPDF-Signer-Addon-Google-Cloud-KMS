@@ -97,6 +97,14 @@ class Module implements
     }
 
     /**
+     * @return \SetaPDF_Signer_X509_Certificate|string
+     */
+    public function getCertificate()
+    {
+        return $this->padesModule->getCertificate();
+    }
+
+    /**
      * Set the digest algorithm to use when signing.
      *
      * @param string $digest Allowed values are sha256, sha386, sha512
