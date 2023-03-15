@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0570ee92f4e6956363d4d5e0d0bad29b",
+    "content-hash": "58737b56e80a5c6bb876b0ad0f74d494",
     "packages": [
         {
             "name": "firebase/php-jwt",
@@ -129,16 +129,16 @@
         },
         {
             "name": "google/cloud-kms",
-            "version": "v1.15.3",
+            "version": "v1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-cloud-php-kms.git",
-                "reference": "3f015d96034fa33dc96318f316f67ae5b40bc6ba"
+                "reference": "7bea2b740523f234728537cf9bf29395da10ef0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-cloud-php-kms/zipball/3f015d96034fa33dc96318f316f67ae5b40bc6ba",
-                "reference": "3f015d96034fa33dc96318f316f67ae5b40bc6ba",
+                "url": "https://api.github.com/repos/googleapis/google-cloud-php-kms/zipball/7bea2b740523f234728537cf9bf29395da10ef0e",
+                "reference": "7bea2b740523f234728537cf9bf29395da10ef0e",
                 "shasum": ""
             },
             "require": {
@@ -174,9 +174,9 @@
             ],
             "description": "Cloud KMS Client for PHP",
             "support": {
-                "source": "https://github.com/googleapis/google-cloud-php-kms/tree/v1.15.3"
+                "source": "https://github.com/googleapis/google-cloud-php-kms/tree/v1.16.0"
             },
-            "time": "2023-02-10T16:10:50+00:00"
+            "time": "2023-03-10T20:22:17+00:00"
         },
         {
             "name": "google/common-protos",
@@ -377,16 +377,16 @@
         },
         {
             "name": "google/protobuf",
-            "version": "v3.22.0",
+            "version": "v3.22.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/protocolbuffers/protobuf-php.git",
-                "reference": "66495c7f8be461c4a65d697e0705a7ef55ca8c19"
+                "reference": "ff28a64946708e13f2be627b5e5561f247ecf95c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/66495c7f8be461c4a65d697e0705a7ef55ca8c19",
-                "reference": "66495c7f8be461c4a65d697e0705a7ef55ca8c19",
+                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/ff28a64946708e13f2be627b5e5561f247ecf95c",
+                "reference": "ff28a64946708e13f2be627b5e5561f247ecf95c",
                 "shasum": ""
             },
             "require": {
@@ -415,22 +415,22 @@
                 "proto"
             ],
             "support": {
-                "source": "https://github.com/protocolbuffers/protobuf-php/tree/v3.22.0"
+                "source": "https://github.com/protocolbuffers/protobuf-php/tree/v3.22.2"
             },
-            "time": "2023-02-10T20:00:39+00:00"
+            "time": "2023-03-10T17:52:03+00:00"
         },
         {
             "name": "grpc/grpc",
-            "version": "1.42.0",
+            "version": "1.52.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/grpc/grpc-php.git",
-                "reference": "9fa44f104cb92e924d4da547323a97f3d8aca6d4"
+                "reference": "98394cd601a587ca68294e6209bd713856969105"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/grpc/grpc-php/zipball/9fa44f104cb92e924d4da547323a97f3d8aca6d4",
-                "reference": "9fa44f104cb92e924d4da547323a97f3d8aca6d4",
+                "url": "https://api.github.com/repos/grpc/grpc-php/zipball/98394cd601a587ca68294e6209bd713856969105",
+                "reference": "98394cd601a587ca68294e6209bd713856969105",
                 "shasum": ""
             },
             "require": {
@@ -459,9 +459,9 @@
                 "rpc"
             ],
             "support": {
-                "source": "https://github.com/grpc/grpc-php/tree/v1.42.0"
+                "source": "https://github.com/grpc/grpc-php/tree/v1.52.0"
             },
-            "time": "2021-11-19T08:13:51+00:00"
+            "time": "2023-02-25T05:20:08+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -920,10 +920,10 @@
         },
         {
             "name": "setasign/setapdf-core",
-            "version": "2.40.4.1792",
+            "version": "2.41.0.1834",
             "dist": {
                 "type": "zip",
-                "url": "https://www.setasign.com/downloads/4180761/SetaPDF-Core_2.40.4.1792-without-demos.zip"
+                "url": "https://www.setasign.com/downloads/4304267/SetaPDF-Core_2.41.0.1834-without-demos.zip"
             },
             "type": "library",
             "autoload": {
@@ -937,17 +937,17 @@
             "support": {
                 "email": "support@setasign.com"
             },
-            "time": "2022-12-19T00:00:00+00:00"
+            "time": "2023-02-21T00:00:00+00:00"
         },
         {
             "name": "setasign/setapdf-signer",
-            "version": "2.40.4.1792",
+            "version": "2.41.0.1834",
             "dist": {
                 "type": "zip",
-                "url": "https://www.setasign.com/downloads/4180779/SetaPDF-Signer_2.40.4.1792-without-core.zip"
+                "url": "https://www.setasign.com/downloads/4304289/SetaPDF-Signer_2.41.0.1834-without-core.zip"
             },
             "require": {
-                "setasign/setapdf-core": "2.40.4.1792"
+                "setasign/setapdf-core": "2.41.0.1834"
             },
             "type": "library",
             "autoload": {
@@ -961,7 +961,7 @@
             "support": {
                 "email": "support@setasign.com"
             },
-            "time": "2022-12-19T00:00:00+00:00"
+            "time": "2023-02-21T00:00:00+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
@@ -1214,16 +1214,16 @@
     "packages-dev": [
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.41",
+            "version": "2.0.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "7e763c6f97ec1fcb37c46aa8ecfc20a2c71d9c1b"
+                "reference": "665d289f59e646a259ebf13f29be7f6f54cab24b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/7e763c6f97ec1fcb37c46aa8ecfc20a2c71d9c1b",
-                "reference": "7e763c6f97ec1fcb37c46aa8ecfc20a2c71d9c1b",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/665d289f59e646a259ebf13f29be7f6f54cab24b",
+                "reference": "665d289f59e646a259ebf13f29be7f6f54cab24b",
                 "shasum": ""
             },
             "require": {
@@ -1304,7 +1304,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/2.0.41"
+                "source": "https://github.com/phpseclib/phpseclib/tree/2.0.42"
             },
             "funding": [
                 {
@@ -1320,7 +1320,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-12-23T16:44:18+00:00"
+            "time": "2023-03-06T12:45:53+00:00"
         }
     ],
     "aliases": [],

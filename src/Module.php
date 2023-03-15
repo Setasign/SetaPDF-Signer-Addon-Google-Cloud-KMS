@@ -22,21 +22,19 @@ use SetaPDF_Signer_Signature_DictionaryInterface;
 use SetaPDF_Signer_Signature_DocumentInterface;
 use SetaPDF_Signer_Signature_Module_ModuleInterface;
 use SetaPDF_Signer_Signature_Module_Pades;
+use SetaPDF_Signer_Signature_Module_PadesProxyTrait;
 
 class Module implements
     SetaPDF_Signer_Signature_Module_ModuleInterface,
     SetaPDF_Signer_Signature_DictionaryInterface,
     SetaPDF_Signer_Signature_DocumentInterface
 {
+    use SetaPDF_Signer_Signature_Module_PadesProxyTrait;
+
     /**
      * @var KeyManagementServiceClient
      */
     protected $kmsClient;
-
-    /**
-     * @var SetaPDF_Signer_Signature_Module_Pades Internal pades module.
-     */
-    protected $padesModule;
 
     /**
      * @var string
@@ -56,7 +54,7 @@ class Module implements
      * @param string $keyRingId
      * @param string $keyId
      * @param string $versionId
-     * @param KeyManagementServiceClient $kmsClient
+     * @param KeyManagementServiceClient|null $kmsClient
      */
     public function __construct(
         $projectId,
@@ -71,7 +69,6 @@ class Module implements
             $kmsClient = new KeyManagementServiceClient();
         }
         $this->kmsClient = $kmsClient;
-        $this->padesModule = new SetaPDF_Signer_Signature_Module_Pades();
 
         $this->keyVersionName = KeyManagementServiceClient::cryptoKeyVersionName(
             $projectId,
@@ -88,23 +85,6 @@ class Module implements
     }
 
     /**
-     * @param $certificate
-     * @throws \SetaPDF_Signer_Asn1_Exception
-     */
-    public function setCertificate($certificate)
-    {
-        $this->padesModule->setCertificate($certificate);
-    }
-
-    /**
-     * @return \SetaPDF_Signer_X509_Certificate|string
-     */
-    public function getCertificate()
-    {
-        return $this->padesModule->getCertificate();
-    }
-
-    /**
      * Set the digest algorithm to use when signing.
      *
      * @param string $digest Allowed values are sha256, sha386, sha512
@@ -112,7 +92,7 @@ class Module implements
      */
     public function setDigest($digest)
     {
-        $this->padesModule->setDigest($digest);
+        $this->_getPadesModule()->setDigest($digest);
     }
 
     /**
@@ -122,12 +102,12 @@ class Module implements
      */
     public function getDigest()
     {
-        return $this->padesModule->getDigest();
+        return $this->_getPadesModule()->getDigest();
     }
 
     /**
      * Note: This method is optional. If no signature algorithm is given it will be fetched through the api which will
-     * add a little bit of extra execution time. You should ensure that the algorithm do match to the certificate
+     * add a bit of extra execution time. You should ensure that the algorithm do match to the certificate
      * otherwise the signature could be invalid.
      *
      * @param int $signatureAlgorithm
@@ -158,71 +138,12 @@ class Module implements
     }
 
     /**
-     * Add additional certificates which are placed into the CMS structure.
-     *
-     * @param array|\SetaPDF_Signer_X509_Collection $extraCertificates PEM encoded certificates or pathes to PEM encoded
-     *                                                                 certificates.
-     * @throws \SetaPDF_Signer_Asn1_Exception
-     */
-    public function setExtraCertificates($extraCertificates)
-    {
-        $this->padesModule->setExtraCertificates($extraCertificates);
-    }
-
-    /**
-     * Adds an OCSP response which will be embedded in the CMS structure.
-     *
-     * @param string|\SetaPDF_Signer_Ocsp_Response $ocspResponse DER encoded OCSP response or OCSP response instance.
-     * @throws SetaPDF_Signer_Exception
-     */
-    public function addOcspResponse($ocspResponse)
-    {
-        $this->padesModule->addOcspResponse($ocspResponse);
-    }
-
-    /**
-     * Adds an CRL which will be embedded in the CMS structure.
-     *
-     * @param string|\SetaPDF_Signer_X509_Crl $crl
-     */
-    public function addCrl($crl)
-    {
-        $this->padesModule->addCrl($crl);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function updateSignatureDictionary(SetaPDF_Core_Type_Dictionary $dictionary)
-    {
-        $this->padesModule->updateSignatureDictionary($dictionary);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function updateDocument(Document $document)
-    {
-        $this->padesModule->updateDocument($document);
-    }
-
-    /**
-     * Get the complete Cryptographic Message Syntax structure.
-     *
-     * @return Asn1Element
-     * @throws SetaPDF_Signer_Exception
-     */
-    public function getCms()
-    {
-        return $this->padesModule->getCms();
-    }
-
-    /**
      * @inheritDoc
      */
     public function createSignature(SetaPDF_Core_Reader_FilePath $tmpPath)
     {
-        $digest = $this->padesModule->getDigest();
+        $module = $this->_getPadesModule();
+        $digest = $module->getDigest();
         $signatureAlgorithm = $this->signatureAlgorithm;
         if ($signatureAlgorithm === null) {
             $signatureAlgorithm = $this->fetchSignatureAlgorithm();
@@ -244,7 +165,7 @@ class Module implements
                 $saltLength = 256 / 8;
             }
 
-            $cms = $this->padesModule->getCms();
+            $cms = $module->getCms();
 
             $signatureAlgorithmIdentifier = Asn1Element::findByPath('1/0/4/0/4', $cms);
             $signatureAlgorithmIdentifier->getChild(0)->setValue(
@@ -311,7 +232,7 @@ class Module implements
         }
 
         // get the hash data from the module
-        $hashData = $this->padesModule->getDataToSign($tmpPath);
+        $hashData = $module->getDataToSign($tmpPath);
 
         $hash = hash($digest, $hashData, true);
         $digestValue = new KmsDigest();
@@ -330,7 +251,7 @@ class Module implements
         $signResponse = $this->kmsClient->asymmetricSign($this->keyVersionName, $digestValue);
 
         // pass it to the module
-        $this->padesModule->setSignatureValue((string) $signResponse->getSignature());
-        return (string) $this->padesModule->getCms();
+        $module->setSignatureValue((string) $signResponse->getSignature());
+        return (string) $module->getCms();
     }
 }
