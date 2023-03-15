@@ -13,7 +13,7 @@ You also need an X.509 certificates related to your stored keys. To create a sel
 or to create a CSR for the certificate authority of your choice, you can use a tool we prepared
 [here](https://github.com/Setasign/Cloud-KMS-CSR).
 
-The package is developed and tested on PHP >= 5.6. Requirements of the [SetaPDF-Signer](https://www.setasign.com/signer)
+The package is developed and tested on PHP >= 7.1. Requirements of the [SetaPDF-Signer](https://www.setasign.com/signer)
 component can be found [here](https://manuals.setasign.com/setapdf-signer-manual/getting-started/#index-1).
 
 ## Installation
