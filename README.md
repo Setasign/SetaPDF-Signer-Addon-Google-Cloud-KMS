@@ -9,7 +9,7 @@ This package uses the official
 [Google Cloud KMS Client Libraries](https://cloud.google.com/kms/docs/reference/libraries)
 to communicate with the KMS. You need appropriate credentials.
 
-You also need a X.509 certificates related to your stored keys. To create a self-signed certificate for testing purpose
+You also need an X.509 certificates related to your stored keys. To create a self-signed certificate for testing purpose
 or to create a CSR for the certificate authority of your choice, you can use a tool we prepared
 [here](https://github.com/Setasign/Cloud-KMS-CSR).
 
@@ -44,26 +44,6 @@ are assigned. You will be asked for this during a composer run. See
 for more options for authentication with composer.
 
 **Follow the [instructions to authentification](https://cloud.google.com/kms/docs/reference/libraries#setting_up_authentication) on Google Cloud KMS.**
-
-
-### Evaluation version
-By default this packages depends on a licensed version of the [SetaPDF-Signer](https://www.setasign.com/signer)
-component. If you want to use it with an [evaluation version](https://www.setasign.com/products/setapdf-signer/evaluate/)
-please use following in your composer.json:
-
-```json
-{
-    "require": {
-        "setasign/setapdf-signer-addon-google-cloud-kms": "dev-evaluation"
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://www.setasign.com/downloads/"
-        }
-    ]
-}
-```
 
 ## Usage
 
