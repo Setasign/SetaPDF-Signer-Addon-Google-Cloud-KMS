@@ -34,4 +34,11 @@ $document = SetaPDF_Core_Document::loadByFilename($fileToSign, $writer);
 
 // create the signer instance
 $signer = new SetaPDF_Signer($document);
+$fieldName = $signer->addSignatureField()->getQualifiedName();
+$signer->setSignatureFieldName($fieldName);
 $signer->sign($googleCloudKmsModule);
+
+// verify the integrity to check if e.g. both private key and public key in the certificate match:
+$document = SetaPDF_Core_Document::loadByFilename($resultPath);
+$integrityResult = SetaPDF_Signer_ValidationRelatedInfo_IntegrityResult::create($document, $fieldName);
+var_dump($integrityResult->isValid() ? 'Valid' : 'Not Valid! Double check that the Certificate matches the private key!');
