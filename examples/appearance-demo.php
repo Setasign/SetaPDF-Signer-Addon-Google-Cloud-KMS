@@ -1,6 +1,10 @@
 <?php
 
 use setasign\SetaPDF\Signer\Module\GoogleCloudKMS\Module;
+use setasign\SetaPDF2\Core\Document;
+use setasign\SetaPDF2\Core\Writer\FileWriter;
+use setasign\SetaPDF2\Signer\Signature\Appearance\Dynamic as DynamicAppearance;
+use setasign\SetaPDF2\Signer\Signer;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -28,12 +32,12 @@ $googleCloudKmsModule->setCertificate($cert);
 $googleCloudKmsModule->setDigest($digest);
 
 // create a writer instance
-$writer = new SetaPDF_Core_Writer_File($resultPath);
+$writer = new FileWriter($resultPath);
 // create the document instance
-$document = SetaPDF_Core_Document::loadByFilename($fileToSign, $writer);
+$document = Document::loadByFilename($fileToSign, $writer);
 
 // create the signer instance
-$signer = new SetaPDF_Signer($document);
+$signer = new Signer($document);
 
 $field = $signer->addSignatureField(
     'Signature',
@@ -46,7 +50,7 @@ $field = $signer->addSignatureField(
 
 $signer->setSignatureFieldName($field->getQualifiedName());
 
-$appearance = new SetaPDF_Signer_Signature_Appearance_Dynamic($googleCloudKmsModule);
+$appearance = new DynamicAppearance($googleCloudKmsModule);
 $signer->setAppearance($appearance);
 
 $signer->sign($googleCloudKmsModule);

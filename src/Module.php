@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (c) 2021 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2026 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -11,22 +11,22 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm;
 use Google\Cloud\Kms\V1\KeyManagementServiceClient;
 use Google\Cloud\Kms\V1\Digest as KmsDigest;
-use SetaPDF_Core_Reader_FilePath;
-use SetaPDF_Signer_Asn1_Element as Asn1Element;
-use SetaPDF_Signer_Asn1_Oid as Asn1Oid;
-use SetaPDF_Signer_Digest as Digest;
-use SetaPDF_Signer_Signature_DictionaryInterface;
-use SetaPDF_Signer_Signature_DocumentInterface;
-use SetaPDF_Signer_Signature_Module_ModuleInterface;
-use SetaPDF_Signer_Signature_Module_Pades;
-use SetaPDF_Signer_Signature_Module_PadesProxyTrait;
+use setasign\SetaPDF2\Signer\Asn1 as Asn1Element;
+use setasign\SetaPDF2\Signer\Asn1\Oid as Asn1Oid;
+use setasign\SetaPDF2\Signer\Digest;
+use setasign\SetaPDF2\Core\Reader\FilePath;
+use setasign\SetaPDF2\Signer\Signature\Module\DictionaryInterface;
+use setasign\SetaPDF2\Signer\Signature\Module\DocumentInterface;
+use setasign\SetaPDF2\Signer\Signature\Module\ModuleInterface;
+use setasign\SetaPDF2\Signer\Signature\Module\Pades;
+use setasign\SetaPDF2\Signer\Signature\Module\PadesProxyTrait;
 
 class Module implements
-    SetaPDF_Signer_Signature_Module_ModuleInterface,
-    SetaPDF_Signer_Signature_DictionaryInterface,
-    SetaPDF_Signer_Signature_DocumentInterface
+    ModuleInterface,
+    DictionaryInterface,
+    DocumentInterface
 {
-    use SetaPDF_Signer_Signature_Module_PadesProxyTrait;
+    use PadesProxyTrait;
 
     /**
      * @var KeyManagementServiceClient
@@ -59,7 +59,7 @@ class Module implements
         $keyRingId,
         $keyId,
         $versionId,
-        KeyManagementServiceClient $kmsClient = null
+        ?KeyManagementServiceClient $kmsClient = null
     ) {
         if ($kmsClient === null) {
             // Create the Cloud KMS client.
@@ -85,7 +85,7 @@ class Module implements
      * Set the digest algorithm to use when signing.
      *
      * @param string $digest Allowed values are sha256, sha386, sha512
-     * @see SetaPDF_Signer_Signature_Module_Pades::setDigest()
+     * @see Pades::setDigest()
      */
     public function setDigest($digest)
     {
@@ -112,7 +112,7 @@ class Module implements
      */
     public function setSignatureAlgorithm($signatureAlgorithm)
     {
-        $this->signatureAlgorithm = (int) $signatureAlgorithm;
+        $this->signatureAlgorithm = (int)$signatureAlgorithm;
     }
 
     /**
@@ -130,14 +130,13 @@ class Module implements
      */
     public function fetchSignatureAlgorithm()
     {
-        $keyVersion = $this->kmsClient->getCryptoKeyVersion($this->keyVersionName);
-        return $keyVersion->getAlgorithm();
+        return $this->kmsClient->getCryptoKeyVersion($this->keyVersionName)->getAlgorithm();
     }
 
     /**
      * @inheritDoc
      */
-    public function createSignature(SetaPDF_Core_Reader_FilePath $tmpPath)
+    public function createSignature(FilePath $tmpPath)
     {
         $module = $this->_getPadesModule();
         $digest = $module->getDigest();
@@ -231,7 +230,7 @@ class Module implements
         // get the hash data from the module
         $hashData = $module->getDataToSign($tmpPath);
 
-        $hash = hash($digest, $hashData, true);
+        $hash = \hash($digest, $hashData, true);
         $digestValue = new KmsDigest();
         switch ($digest) {
             case Digest::SHA_256:
