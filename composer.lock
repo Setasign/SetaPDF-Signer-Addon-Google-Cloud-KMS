@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "08003aa1cc4d1e10c8c382ed43bd3c32",
+    "content-hash": "a49c9f012a6d3700104d38e8b7983af0",
     "packages": [
         {
             "name": "brick/math",
@@ -193,21 +193,21 @@
         },
         {
             "name": "google/cloud-kms",
-            "version": "v1.23.0",
+            "version": "v2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-cloud-php-kms.git",
-                "reference": "607d60af9dce84c4beef0bc69a898c57ef214e77"
+                "reference": "ae3fd39f47b2cd97b04b00e93b377c368a5bcdb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-cloud-php-kms/zipball/607d60af9dce84c4beef0bc69a898c57ef214e77",
-                "reference": "607d60af9dce84c4beef0bc69a898c57ef214e77",
+                "url": "https://api.github.com/repos/googleapis/google-cloud-php-kms/zipball/ae3fd39f47b2cd97b04b00e93b377c368a5bcdb4",
+                "reference": "ae3fd39f47b2cd97b04b00e93b377c368a5bcdb4",
                 "shasum": ""
             },
             "require": {
-                "google/gax": "^1.34.0",
-                "php": "^8.0"
+                "google/gax": "^1.38.0",
+                "php": "^8.1"
             },
             "require-dev": {
                 "google/cloud-core": "^1.52.7",
@@ -238,9 +238,9 @@
             ],
             "description": "Cloud KMS Client for PHP",
             "support": {
-                "source": "https://github.com/googleapis/google-cloud-php-kms/tree/v1.23.0"
+                "source": "https://github.com/googleapis/google-cloud-php-kms/tree/v2.5.1"
             },
-            "time": "2024-06-21T16:37:15+00:00"
+            "time": "2025-10-07T18:41:09+00:00"
         },
         {
             "name": "google/common-protos",
@@ -303,16 +303,16 @@
         },
         {
             "name": "google/gax",
-            "version": "v1.40.1",
+            "version": "v1.42.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/gax-php.git",
-                "reference": "80527b9779c3277c31c74d2fb7ff1ca990239163"
+                "reference": "7ad13e5b9ca201a5f60e7b3342842d1217bc23a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/gax-php/zipball/80527b9779c3277c31c74d2fb7ff1ca990239163",
-                "reference": "80527b9779c3277c31c74d2fb7ff1ca990239163",
+                "url": "https://api.github.com/repos/googleapis/gax-php/zipball/7ad13e5b9ca201a5f60e7b3342842d1217bc23a6",
+                "reference": "7ad13e5b9ca201a5f60e7b3342842d1217bc23a6",
                 "shasum": ""
             },
             "require": {
@@ -354,9 +354,9 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/gax-php/issues",
-                "source": "https://github.com/googleapis/gax-php/tree/v1.40.1"
+                "source": "https://github.com/googleapis/gax-php/tree/v1.42.0"
             },
-            "time": "2026-01-16T19:54:08+00:00"
+            "time": "2026-01-22T20:31:50+00:00"
         },
         {
             "name": "google/grpc-gcp",
@@ -1564,7 +1564,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.2 <=8.4.99999"
+        "php": ">=8.1 <=8.4.99999"
     },
     "platform-dev": {},
     "plugin-api-version": "2.6.0"

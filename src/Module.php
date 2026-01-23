@@ -8,9 +8,11 @@
 namespace setasign\SetaPDF\Signer\Module\GoogleCloudKMS;
 
 use Google\ApiCore\ApiException;
+use Google\Cloud\Kms\V1\AsymmetricSignRequest;
 use Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm;
-use Google\Cloud\Kms\V1\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\Client\KeyManagementServiceClient;
 use Google\Cloud\Kms\V1\Digest as KmsDigest;
+use Google\Cloud\Kms\V1\GetCryptoKeyVersionRequest;
 use setasign\SetaPDF2\Signer\Asn1\Element as Asn1Element;
 use setasign\SetaPDF2\Signer\Asn1\Oid as Asn1Oid;
 use setasign\SetaPDF2\Signer\Digest;
@@ -130,7 +132,8 @@ class Module implements
      */
     public function fetchSignatureAlgorithm()
     {
-        return $this->kmsClient->getCryptoKeyVersion($this->keyVersionName)->getAlgorithm();
+        $request = (new GetCryptoKeyVersionRequest())->setName($this->keyVersionName);
+        return $this->kmsClient->getCryptoKeyVersion($request)->getAlgorithm();
     }
 
     /**
@@ -244,7 +247,11 @@ class Module implements
                 break;
         }
 
-        $signResponse = $this->kmsClient->asymmetricSign($this->keyVersionName, $digestValue);
+        $request = (new AsymmetricSignRequest)
+            ->setName($this->keyVersionName)
+            ->setDigest($digestValue);
+
+        $signResponse = $this->kmsClient->asymmetricSign($request);
 
         // pass it to the module
         $module->setSignatureValue((string) $signResponse->getSignature());
