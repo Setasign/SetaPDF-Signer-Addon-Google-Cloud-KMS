@@ -11,7 +11,7 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm;
 use Google\Cloud\Kms\V1\KeyManagementServiceClient;
 use Google\Cloud\Kms\V1\Digest as KmsDigest;
-use setasign\SetaPDF2\Signer\Asn1 as Asn1Element;
+use setasign\SetaPDF2\Signer\Asn1\Element as Asn1Element;
 use setasign\SetaPDF2\Signer\Asn1\Oid as Asn1Oid;
 use setasign\SetaPDF2\Signer\Digest;
 use setasign\SetaPDF2\Core\Reader\FilePath;
