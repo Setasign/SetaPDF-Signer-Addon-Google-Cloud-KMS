@@ -39,8 +39,10 @@ and execute `composer update`. You need to define the `repository` to evaluate t
 
 The Setasign repository requires authentication data: You can use your credentials
 of your account at [setasign.com](https://www.setasign.com) to which your licenses
-are assigned. You will be asked for this during a composer run. See
-[here](https://getcomposer.org/doc/articles/authentication-for-private-packages.md#http-basic)
+are assigned or use an access token which you can create in your personal
+[composer settings](https://www.setasign.com/my-setasign/composer-settings/#bearer-authentication)
+on setasign.com.
+See [here](https://getcomposer.org/doc/articles/authentication-for-private-packages.md#http-basic)
 for more options for authentication with composer.
 
 **Follow the [instructions to authentification](https://cloud.google.com/kms/docs/reference/libraries#setting_up_authentication) on Google Cloud KMS.**
