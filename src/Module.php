@@ -32,7 +32,7 @@ class Module implements
 
     protected KeyManagementServiceClient $kmsClient;
     protected string $keyVersionName;
-    protected ?int $signatureAlgorithm;
+    protected ?int $signatureAlgorithm = null;
 
     /**
      * Module constructor.
