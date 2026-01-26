@@ -64,7 +64,12 @@ component. Its constructor requires 5 arguments:
 A simple complete signature process would look like this:
 
 ```php
-$googleCloudKmsModule = new setasign\SetaPDF\Signer\Module\GoogleCloudKMS\Module(
+use setasign\SetaPDF\Signer\Module\GoogleCloudKMS\Module;
+use setasign\SetaPDF2\Core\Document;
+use setasign\SetaPDF2\Core\Writer\FileWriter;
+use setasign\SetaPDF2\Signer\Signer;
+
+$googleCloudKmsModule = new Module(
     $projectId,
     $locationId,
     $keyRingId,
@@ -80,12 +85,12 @@ $googleCloudKmsModule->setDigest($digest);
 $fileToSign = __DIR__ . '/Laboratory-Report.pdf';
 
 // create a writer instance
-$writer = new SetaPDF_Core_Writer_File('signed.pdf');
+$writer = new FileWriter('signed.pdf');
 // create the document instance
-$document = SetaPDF_Core_Document::loadByFilename($fileToSign, $writer);
+$document = Document::loadByFilename($fileToSign, $writer);
 
 // create the signer instance
-$signer = new SetaPDF_Signer($document);
+$signer = new Signer($document);
 $signer->sign($googleCloudKmsModule);
 ```
 
