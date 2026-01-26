@@ -30,20 +30,9 @@ class Module implements
 {
     use PadesProxyTrait;
 
-    /**
-     * @var KeyManagementServiceClient
-     */
-    protected $kmsClient;
-
-    /**
-     * @var string
-     */
-    protected $keyVersionName;
-
-    /**
-     * @var int|null
-     */
-    protected $signatureAlgorithm;
+    protected KeyManagementServiceClient $kmsClient;
+    protected string $keyVersionName;
+    protected ?int $signatureAlgorithm;
 
     /**
      * Module constructor.
@@ -56,11 +45,11 @@ class Module implements
      * @param KeyManagementServiceClient|null $kmsClient
      */
     public function __construct(
-        $projectId,
-        $locationId,
-        $keyRingId,
-        $keyId,
-        $versionId,
+        string $projectId,
+        string $locationId,
+        string $keyRingId,
+        string $keyId,
+        string $versionId,
         ?KeyManagementServiceClient $kmsClient = null
     ) {
         if ($kmsClient === null) {
@@ -89,7 +78,7 @@ class Module implements
      * @param string $digest Allowed values are sha256, sha386, sha512
      * @see Pades::setDigest()
      */
-    public function setDigest($digest)
+    public function setDigest(string $digest): void
     {
         $this->_getPadesModule()->setDigest($digest);
     }
@@ -99,7 +88,7 @@ class Module implements
      *
      * @return string
      */
-    public function getDigest()
+    public function getDigest(): string
     {
         return $this->_getPadesModule()->getDigest();
     }
@@ -112,7 +101,7 @@ class Module implements
      * @param int $signatureAlgorithm
      * @see CryptoKeyVersionAlgorithm
      */
-    public function setSignatureAlgorithm($signatureAlgorithm)
+    public function setSignatureAlgorithm(int $signatureAlgorithm): void
     {
         $this->signatureAlgorithm = (int)$signatureAlgorithm;
     }
@@ -121,7 +110,7 @@ class Module implements
      * @return int|null
      * @see CryptoKeyVersionAlgorithm
      */
-    public function getSignatureAlgorithm()
+    public function getSignatureAlgorithm(): ?int
     {
         return $this->signatureAlgorithm;
     }
@@ -130,7 +119,7 @@ class Module implements
      * @return int
      * @throws ApiException
      */
-    public function fetchSignatureAlgorithm()
+    public function fetchSignatureAlgorithm(): int
     {
         $request = (new GetCryptoKeyVersionRequest())->setName($this->keyVersionName);
         return $this->kmsClient->getCryptoKeyVersion($request)->getAlgorithm();
