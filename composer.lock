@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "702e67f9f17aea0f00bfd6650534e869",
+    "content-hash": "597999c340fc0bb0536ad845e1455186",
     "packages": [
         {
             "name": "brick/math",
@@ -193,16 +193,16 @@
         },
         {
             "name": "google/cloud-kms",
-            "version": "v2.5.1",
+            "version": "v2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-cloud-php-kms.git",
-                "reference": "ae3fd39f47b2cd97b04b00e93b377c368a5bcdb4"
+                "reference": "96fa19d893a8008dc697475de6b796b1dce5ea91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-cloud-php-kms/zipball/ae3fd39f47b2cd97b04b00e93b377c368a5bcdb4",
-                "reference": "ae3fd39f47b2cd97b04b00e93b377c368a5bcdb4",
+                "url": "https://api.github.com/repos/googleapis/google-cloud-php-kms/zipball/96fa19d893a8008dc697475de6b796b1dce5ea91",
+                "reference": "96fa19d893a8008dc697475de6b796b1dce5ea91",
                 "shasum": ""
             },
             "require": {
@@ -238,9 +238,9 @@
             ],
             "description": "Cloud KMS Client for PHP",
             "support": {
-                "source": "https://github.com/googleapis/google-cloud-php-kms/tree/v2.5.1"
+                "source": "https://github.com/googleapis/google-cloud-php-kms/tree/v2.6.0"
             },
-            "time": "2025-10-07T18:41:09+00:00"
+            "time": "2026-01-23T22:57:13+00:00"
         },
         {
             "name": "google/common-protos",
@@ -1568,16 +1568,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "3.0.x-dev",
+            "version": "3.0.49",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "94bf93ecfb0ed3abc0911149a40bf1d1ae0c272d"
+                "reference": "6233a1e12584754e6b5daa69fe1289b47775c1b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/94bf93ecfb0ed3abc0911149a40bf1d1ae0c272d",
-                "reference": "94bf93ecfb0ed3abc0911149a40bf1d1ae0c272d",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/6233a1e12584754e6b5daa69fe1289b47775c1b9",
+                "reference": "6233a1e12584754e6b5daa69fe1289b47775c1b9",
                 "shasum": ""
             },
             "require": {
@@ -1658,7 +1658,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.49"
             },
             "funding": [
                 {
@@ -1674,14 +1674,12 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-01-09T14:33:26+00:00"
+            "time": "2026-01-27T09:17:28+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "phpseclib/phpseclib": 20
-    },
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

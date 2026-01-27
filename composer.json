@@ -16,7 +16,7 @@
         "google/cloud-kms": "^v2.5.1"
     },
     "require-dev": {
-        "phpseclib/phpseclib": "3.0.x-dev"
+        "phpseclib/phpseclib": "^3.0"
     },
     "autoload": {
         "psr-4": {
