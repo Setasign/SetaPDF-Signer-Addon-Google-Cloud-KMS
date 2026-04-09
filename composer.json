@@ -11,9 +11,9 @@
         }
     ],
     "require": {
-        "php": ">=8.1 <=8.4.99999",
+        "php": ">=8.1 <=8.5.99999",
         "setasign/setapdf-signer": "^2.50",
-        "google/cloud-kms": "^v2.5.1"
+        "google/cloud-kms": "^v2.8.0"
     },
     "require-dev": {
         "phpseclib/phpseclib": "^3.0"
