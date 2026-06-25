@@ -100,4 +100,4 @@ Make sure that you pass the same `$digest` value as configured for the key in th
 
 ## License
 
-This package is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This package is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
